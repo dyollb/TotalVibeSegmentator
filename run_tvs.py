@@ -16,6 +16,8 @@ app = typer.Typer()
 class Task(str, Enum):
     total = "total"
     regions = "regions"
+    vertebrae = "vertebrae"
+    spine = "spine"
 
 
 def worker_callback(f):
@@ -43,7 +45,7 @@ def run_tvs(
     input_path: Path,
     output_path: Path,
     task: Task = Task.total,
-    keep_size: bool = False,
+    keep_size: bool = True,
     fill_holes: bool = False,
     crop: bool = False,
     copy_tissue_info: bool = True,
@@ -51,18 +53,24 @@ def run_tvs(
     """Run TVS"""
 
     task_map = {Task.total: 87, Task.regions: 278}
-    dataset_id = task_map[task]
+    dataset_id = task_map.get(task)
+    script = Path(__file__).parent / "run_TotalVibeSegmentator.py"
+    if task == Task.vertebrae:
+        script = Path(__file__).parent / "run_instance_spine_segmentation.py"
+    elif task == Task.spine:
+        script = Path(__file__).parent / "run_semantic_spine_segmentation.py"
 
     args = [
         sys.executable,
-        f"{Path(__file__).parent / 'run_TotalVibeSegmentator.py'}",
+        str(script),
         "--img",
         f"{input_path}",
         "--out_path",
         f"{output_path}",
-        "--dataset_id",
-        f"{dataset_id}",
     ]
+    if dataset_id:
+        args += ["--dataset_id", f"{dataset_id}"]
+
     if keep_size:
         args.append("--keep_size")
     if fill_holes:
@@ -95,7 +103,7 @@ def run_all(
     input_dir: Path,
     output_dir: Path,
     task: Task = Task.total,
-    keep_size: bool = False,
+    keep_size: bool = True,
     fill_holes: bool = False,
     crop: bool = False,
     glob: str = "*.nii.gz",
@@ -108,8 +116,9 @@ def run_all(
 
     output_dir.mkdir(exist_ok=True, parents=True)
 
-    tissues_path = Path(__file__).parent / f"tissues_{Task.total}.txt"
-    shutil.copyfile(tissues_path, output_dir / "tissues.txt")
+    tissues_path = Path(__file__).parent / f"tissues_{task}.txt"
+    if tissues_path.exists():
+        shutil.copyfile(tissues_path, output_dir / "tissues.txt")
 
     kwargs = {
         "keep_size": keep_size,

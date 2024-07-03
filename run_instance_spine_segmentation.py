@@ -25,6 +25,9 @@ def run_seg(
     logits=False,
     known_idx=instance_models,
     mapping=None,
+    keep_size=False,
+    fill_holes=False,
+    crop=False,
     **kargs,
 ):
     if dataset_id is None:
@@ -60,6 +63,9 @@ def run_seg(
             orientation=orientation,
             logits=logits,
             mapping=mapping,
+            keep_size=keep_size,
+            fill_holes=fill_holes,
+            crop=crop,
         )
     except Exception:
         logger.print_error()
@@ -72,6 +78,9 @@ class Arguments(Class_to_ArgParse):
     override: bool = False
     gpu = None
     dataset_id: int | None = None
+    keep_size: bool = False
+    fill_holes: bool = False
+    crop: bool = False
 
 
 if __name__ == "__main__":
