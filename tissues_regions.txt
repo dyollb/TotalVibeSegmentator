@@ -1,0 +1,13 @@
+V7
+N11
+C0.68 0.96 0.79 0.50 spleen
+C0.75 0.61 0.49 0.50 kidney_left
+C0.26 0.97 0.27 0.50 gallbladder
+C0.48 0.26 0.14 0.50 liver
+C1.00 0.50 0.00 0.50 stomach
+C0.34 0.96 0.73 0.50 adrenal_gland_left
+C0.22 0.68 1.00 0.50 lung_lower_lobe_left
+C1.00 0.58 0.00 0.50 esophagus
+C0.18 1.00 1.00 0.50 trachea
+C0.32 0.02 0.30 0.50 thyroid_gland
+C1.00 0.77 0.69 0.50 intestine
