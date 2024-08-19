@@ -15,6 +15,7 @@
 3. Navigate to the folder where you want to download the script using `cd [FOLDER PATH]`.
 
 ```bash
+# Run this commands by coping in to the Terminal
 # Recommended: make a virtual Python environment (example shows Anaconda)
 conda create -n "TotalVibeSegmentator" python=3.11.0  
 conda activate TotalVibeSegmentator
@@ -26,10 +27,10 @@ pip install torch torchvision torchaudio
 pip install TPTBox ruamel.yaml configargparse
 pip install nnunetv2 
 
-# If nnunetv2 does not work, try version 2.2.1
+# If nnunetv2 does not work, try version 2.4.2
 # Uninstall the current version and reinstall with the specified version
 #pip uninstall nnunetv2
-#pip install nnunetv2==2.2.1
+#pip install nnunetv2==2.4.2
 
 # Download the scripts (they will be downloaded to your current folder)
 git clone https://github.com/robert-graf/TotalVibeSegmentator.git
@@ -38,12 +39,11 @@ cd TotalVibeSegmentator
 
 ## Download
 
-Download the nnUNet weights automatically or if this is not working use this [Mirror](https://syncandshare.lrz.de/getlink/fi85nm6N8cqwHz342Rsqt9/nnUNet_results) and put them in `[Path to this project]/nnUNet/nnUNet_results/`. For the TotalVibeSegmentator, you need the ROI model (278) and the newest TotalVibeSegmentator model.
+Download the nnUNet weights automatically. They are put in `[Path to this project]/nnUNet/nnUNet_results/`. 
 
-You must navigate (with cd in your terminal) to the folder containing `run_TotalVibeSegmentator.py`
 ## Run
 ```bash
-# Download the nnUNet weights and put them in [Path to this project]/nnUNet/nnUNet_results/
+# Run this commands in a Terminal where you navigate to the folder where `run_TotalVibeSegmentator.py` is
 conda activate TotalVibeSegmentator
 
 # Total Segmentation
@@ -144,9 +144,10 @@ You can select older (or new if your code is not updated with `git pull`) versio
 
 |ID | NAME|
 | -------- | --------|
-|85|preprint|
-|86|repaired stomach|
-|87|Better hyperparameter|
+|80|publication version|
+|85|preprint version|
+|86|repaired stomach (deprecated)|
+|87|better hyperparameter (deprecated)|
 |278|Splits the body in 11 regions|
 
 
