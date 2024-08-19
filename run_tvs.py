@@ -52,7 +52,7 @@ def run_tvs(
 ):
     """Run TVS"""
 
-    task_map = {Task.total: 87, Task.regions: 278}
+    task_map = {Task.total: 80, Task.regions: 278}
     dataset_id = task_map.get(task)
     script = Path(__file__).parent / "run_TotalVibeSegmentator.py"
     if task == Task.vertebrae:

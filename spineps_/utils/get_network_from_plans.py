@@ -61,10 +61,10 @@ def get_network_from_plans(
     }
     assert segmentation_network_class_name in mapping.keys(), (
         "The network architecture specified by the plans file "
-        "is non-standard (maybe your own?). Yo'll have to dive "
+        "is non-standard (maybe your own?). You will have to dive "
         "into either this "
         "function (get_network_from_plans) or "
-        "the init of your nnUNetModule to accomodate that."
+        "the init of your nnUNetModule to accommodate that."
     )
     network_class = mapping[segmentation_network_class_name]
 
